@@ -1,4 +1,4 @@
-FROM centos:hadoop
+FROM centos7/hadoop:namenode
 
 RUN mkdir /opt/hive
 
