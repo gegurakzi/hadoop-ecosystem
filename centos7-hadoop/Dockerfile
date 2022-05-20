@@ -47,7 +47,4 @@ COPY yarn-site.xml .
 COPY mapred-site.xml . 
 
 ENTRYPOINT ["/bin/bash"]
-
-EXPOSE 22
-EXPOSE 9870/tcp
-EXPOSE 8088/tcp 
+ 
