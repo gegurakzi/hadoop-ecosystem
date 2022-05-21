@@ -1,4 +1,4 @@
-FROM centos7/hadoop/zookeeper:node
+FROM centos7/hadoop/hive:ha
 
 MAINTAINER Malachai <prussian1933@naver.com>
 

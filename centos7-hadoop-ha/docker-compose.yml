@@ -44,6 +44,7 @@ services:
         ipv4_address: 172.16.238.3
     ports:
       - "9871:9870"
+      - "8089:8088"
       - "50071:50070"
     extra_hosts:
       - "master01:172.16.238.2"
@@ -77,7 +78,7 @@ services:
     tty: true
 
   slave02:
-    image: centos7/hadoop/zookeeper:node
+    image: centos7/hadoop:ha
     privileged: true
     container_name: slave02
     hostname: slave02
@@ -97,7 +98,7 @@ services:
     tty: true
 
   slave03:
-    image: centos7/hadoop/zookeeper:node
+    image: centos7/hadoop:ha
     privileged: true
     container_name: slave03
     hostname: slave03

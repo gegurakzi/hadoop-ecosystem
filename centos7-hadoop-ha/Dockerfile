@@ -1,4 +1,4 @@
-FROM centos7/hadoop:namenode
+FROM centos7/hadoop:nn
 
 MAINTAINER Malachai <prussian1933@naver.com>
 
@@ -22,6 +22,8 @@ RUN echo \
 $'export HDFS_JOURNALNODE_USER=\"root\" \n\
   export HDFS_ZKFC_USER=\"root\" \n\
   export YARN_PROXYSERVER_USER=\"root\" ' >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh && \
+   echo \
+$'JAVA_HEAP_MAX=Xmx1024m' >> $HADOOP_HOME/etc/hadoop/yarn-env.sh && \
    echo \
 $'alias zoo-start="/opt/zookeeper/current/bin/zkServer.sh start" \n\
   alias zoo-status="/opt/zookeeper/current/bin/zkServer.sh status" \n\
