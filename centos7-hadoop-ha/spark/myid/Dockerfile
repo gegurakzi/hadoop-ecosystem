@@ -1,4 +1,4 @@
-FROM centos7/hadoop:ha
+FROM centos7/hadoop/spark:ha
 
 MAINTAINER Malachai <prussian1933@naver.com>
 
