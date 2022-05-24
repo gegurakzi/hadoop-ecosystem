@@ -2,7 +2,7 @@ version: "3.7"
 services:
   master01:
     build:
-      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/myid
+      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/spark/myid
       args:
         - MYID=1
     privileged: true
@@ -19,6 +19,9 @@ services:
       - "9870:9870"
       - "8088:8088"
       - "50070:50070"
+      - "19888:19888"
+      - "18080:18080"
+      - "4040:4040"
     extra_hosts:
       - "master02:172.16.238.3"
       - "slave01:172.16.238.4"
@@ -29,7 +32,7 @@ services:
 
   master02:
     build:
-      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/myid
+      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/spark/myid
       args:
         - MYID=2
     privileged: true
@@ -46,6 +49,9 @@ services:
       - "9871:9870"
       - "8089:8088"
       - "50071:50070"
+      - "19889:19888"
+      - "18081:18081"
+      - "4041:4040"
     extra_hosts:
       - "master01:172.16.238.2"
       - "slave01:172.16.238.4"
