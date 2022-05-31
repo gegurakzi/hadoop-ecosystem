@@ -12,6 +12,12 @@ services:
      - type: bind
        source: /home/malachai/hadoop-ecosystem/keys
        target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/dags
+       target: /opt/airflow/current/dags
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/logs
+       target: /opt/airflow/current/logs
     networks:
       cluster-net:
         ipv4_address: 172.16.238.2
@@ -44,6 +50,12 @@ services:
      - type: bind
        source: /home/malachai/hadoop-ecosystem/keys
        target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/dags
+       target: /opt/airflow/current/dags
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/logs
+       target: /opt/airflow/current/logs
     networks:
       cluster-net:
         ipv4_address: 172.16.238.3
@@ -66,7 +78,7 @@ services:
 
   slave01:
     build:
-      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/myid
+      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/rabbitmq/myid
       args:
         - MYID=3
     privileged: true
@@ -76,9 +88,27 @@ services:
      - type: bind
        source: /home/malachai/hadoop-ecosystem/keys
        target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/dags
+       target: /opt/airflow/current/dags
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/logs
+       target: /opt/airflow/current/logs
     networks:
       cluster-net:
         ipv4_address: 172.16.238.4
+    ports:
+      - "5082:5080"
+      - "5557:5555"
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "15672:15672"
+      - "25672:25672"
+      - "61613:61613"
+      - "61614:61614"
+      - "1883:1883"
+      - "8883:8883"
     extra_hosts:
       - "master01:172.16.238.2"
       - "master02:172.16.238.3"
@@ -96,6 +126,12 @@ services:
      - type: bind
        source: /home/malachai/hadoop-ecosystem/keys
        target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/dags
+       target: /opt/airflow/current/dags
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/logs
+       target: /opt/airflow/current/logs
     networks:
       cluster-net:
         ipv4_address: 172.16.238.5
@@ -116,6 +152,12 @@ services:
      - type: bind
        source: /home/malachai/hadoop-ecosystem/keys
        target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/dags
+       target: /opt/airflow/current/dags
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/logs
+       target: /opt/airflow/current/logs
     networks:
       cluster-net:
         ipv4_address: 172.16.238.6
