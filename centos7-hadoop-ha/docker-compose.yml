@@ -144,7 +144,7 @@ services:
     tty: true
 
   slave03:
-    image: centos7/hadoop:ha
+    image: centos7/hadoop/flume:ha
     privileged: true
     container_name: slave03
     hostname: slave03
