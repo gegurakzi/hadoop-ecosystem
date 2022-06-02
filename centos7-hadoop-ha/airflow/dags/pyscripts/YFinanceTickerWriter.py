@@ -1,7 +1,9 @@
-from . import yfinance as yf
-import time, sys, argparse
+import sys, os
+if '/opt/airflow/current/dags/pyscripts/yfinance' not in sys.path:
+    sys.path.append(os.path.dirname('/opt/airflow/current/dags/pyscripts/yfinance'))
+import yfinance as yf
+import time,  argparse
 
-	
 
 def ticker_tofiles(ticker, outdir, **kwargs):
 
@@ -36,9 +38,9 @@ def ticker_tofiles(ticker, outdir, **kwargs):
 
 	for attr, typ in unprotected_attrs.items():
 		if typ in ['DataFrame', 'Series']:
-			getattr(tick, attr).to_csv(outdir+time.strftime('%Y-%m-%dT%H:%M:%S', time.gmtime(time.time()))+"_"+ticker+"_"+attr+'.csv')
+			getattr(tick, attr).to_csv(outdir+'/'+time.strftime('%Y%m%dT%H%M%S', time.gmtime(time.time()))+"_"+ticker+"_"+attr+'.csv')
 		else:
-			f = open(outdir+time.strftime('%Y-%m-%dT%H:%M:%S', time.gmtime(time.time()))+"_"+ticker+"_"+attr+'.out', 'w')
+			f = open(outdir+'/'+time.strftime('%Y%m%dT%H%M%S', time.gmtime(time.time()))+"_"+ticker+"_"+attr+'.out', 'w')
 			f.write(str(getattr(tick, attr)))
 			f.close()
 

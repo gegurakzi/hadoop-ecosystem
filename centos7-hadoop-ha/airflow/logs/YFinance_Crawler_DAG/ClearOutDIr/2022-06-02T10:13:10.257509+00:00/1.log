@@ -1,0 +1,26 @@
+[2022-06-02 10:13:28,294] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: YFinance_Crawler_DAG.ClearOutDIr 2022-06-02T10:13:10.257509+00:00 [queued]>
+[2022-06-02 10:13:28,355] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: YFinance_Crawler_DAG.ClearOutDIr 2022-06-02T10:13:10.257509+00:00 [queued]>
+[2022-06-02 10:13:28,356] {taskinstance.py:1017} INFO - 
+--------------------------------------------------------------------------------
+[2022-06-02 10:13:28,356] {taskinstance.py:1018} INFO - Starting attempt 1 of 1
+[2022-06-02 10:13:28,356] {taskinstance.py:1019} INFO - 
+--------------------------------------------------------------------------------
+[2022-06-02 10:13:28,379] {taskinstance.py:1038} INFO - Executing <Task(BashOperator): ClearOutDIr> on 2022-06-02T10:13:10.257509+00:00
+[2022-06-02 10:13:28,382] {standard_task_runner.py:51} INFO - Started process 3861 to run task
+[2022-06-02 10:13:28,386] {standard_task_runner.py:75} INFO - Running: ['airflow', 'tasks', 'run', 'YFinance_Crawler_DAG', 'ClearOutDIr', '2022-06-02T10:13:10.257509+00:00', '--job-id', '139', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/Crawler.py', '--cfg-path', '/tmp/tmpeeo8zta6']
+[2022-06-02 10:13:28,386] {standard_task_runner.py:76} INFO - Job 139: Subtask ClearOutDIr
+[2022-06-02 10:13:28,556] {logging_mixin.py:103} INFO - Running <TaskInstance: YFinance_Crawler_DAG.ClearOutDIr 2022-06-02T10:13:10.257509+00:00 [running]> on host slave03
+[2022-06-02 10:13:28,714] {taskinstance.py:1232} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=YFinance_Crawler_DAG
+AIRFLOW_CTX_TASK_ID=ClearOutDIr
+AIRFLOW_CTX_EXECUTION_DATE=2022-06-02T10:13:10.257509+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-06-02T10:13:10.257509+00:00
+[2022-06-02 10:13:28,714] {bash.py:135} INFO - Tmp dir root location: 
+ /tmp
+[2022-06-02 10:13:28,715] {bash.py:158} INFO - Running command: rm -f /opt/flume/current/output/*
+[2022-06-02 10:13:28,723] {bash.py:169} INFO - Output:
+[2022-06-02 10:13:28,728] {bash.py:177} INFO - Command exited with return code 0
+[2022-06-02 10:13:28,825] {taskinstance.py:1142} INFO - Marking task as SUCCESS. dag_id=YFinance_Crawler_DAG, task_id=ClearOutDIr, execution_date=20220602T101310, start_date=20220602T101328, end_date=20220602T101328
+[2022-06-02 10:13:28,908] {taskinstance.py:1195} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-06-02 10:13:28,918] {local_task_job.py:118} INFO - Task exited with return code 0

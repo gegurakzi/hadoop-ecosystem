@@ -1,0 +1,95 @@
+[2022-06-02 09:29:23,130] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: YFinance_Crawler_DAG.CopyFromLocal 2022-06-02T09:29:11.939060+00:00 [queued]>
+[2022-06-02 09:29:23,173] {taskinstance.py:826} INFO - Dependencies all met for <TaskInstance: YFinance_Crawler_DAG.CopyFromLocal 2022-06-02T09:29:11.939060+00:00 [queued]>
+[2022-06-02 09:29:23,173] {taskinstance.py:1017} INFO - 
+--------------------------------------------------------------------------------
+[2022-06-02 09:29:23,173] {taskinstance.py:1018} INFO - Starting attempt 1 of 1
+[2022-06-02 09:29:23,173] {taskinstance.py:1019} INFO - 
+--------------------------------------------------------------------------------
+[2022-06-02 09:29:23,203] {taskinstance.py:1038} INFO - Executing <Task(BashOperator): CopyFromLocal> on 2022-06-02T09:29:11.939060+00:00
+[2022-06-02 09:29:23,207] {standard_task_runner.py:51} INFO - Started process 2475 to run task
+[2022-06-02 09:29:23,212] {standard_task_runner.py:75} INFO - Running: ['airflow', 'tasks', 'run', 'YFinance_Crawler_DAG', 'CopyFromLocal', '2022-06-02T09:29:11.939060+00:00', '--job-id', '120', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/Crawler.py', '--cfg-path', '/tmp/tmpgvgeliim']
+[2022-06-02 09:29:23,212] {standard_task_runner.py:76} INFO - Job 120: Subtask CopyFromLocal
+[2022-06-02 09:29:23,363] {logging_mixin.py:103} INFO - Running <TaskInstance: YFinance_Crawler_DAG.CopyFromLocal 2022-06-02T09:29:11.939060+00:00 [running]> on host slave03
+[2022-06-02 09:29:23,556] {taskinstance.py:1232} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=YFinance_Crawler_DAG
+AIRFLOW_CTX_TASK_ID=CopyFromLocal
+AIRFLOW_CTX_EXECUTION_DATE=2022-06-02T09:29:11.939060+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-06-02T09:29:11.939060+00:00
+[2022-06-02 09:29:23,556] {bash.py:135} INFO - Tmp dir root location: 
+ /tmp
+[2022-06-02 09:29:23,557] {bash.py:158} INFO - Running command: hadoop fs -put /opt/flume/current/source1_workdir /user/hadoop/flume/ticker_csv
+[2022-06-02 09:29:23,565] {bash.py:169} INFO - Output:
+[2022-06-02 09:29:25,570] {bash.py:173} INFO - -put: Pathname /user/hadoop/flume/ticker_csv/source1_workdir/2022-06-02T09:25:18_AAPL_shares.csv from /user/hadoop/flume/ticker_csv/source1_workdir/2022-06-02T09:25:18_AAPL_shares.csv is not a valid DFS filename.
+[2022-06-02 09:29:25,570] {bash.py:173} INFO - Usage: hadoop fs [generic options]
+[2022-06-02 09:29:25,570] {bash.py:173} INFO - 	[-appendToFile <localsrc> ... <dst>]
+[2022-06-02 09:29:25,570] {bash.py:173} INFO - 	[-cat [-ignoreCrc] <src> ...]
+[2022-06-02 09:29:25,570] {bash.py:173} INFO - 	[-checksum [-v] <src> ...]
+[2022-06-02 09:29:25,570] {bash.py:173} INFO - 	[-chgrp [-R] GROUP PATH...]
+[2022-06-02 09:29:25,570] {bash.py:173} INFO - 	[-chmod [-R] <MODE[,MODE]... | OCTALMODE> PATH...]
+[2022-06-02 09:29:25,570] {bash.py:173} INFO - 	[-chown [-R] [OWNER][:[GROUP]] PATH...]
+[2022-06-02 09:29:25,570] {bash.py:173} INFO - 	[-concat <target path> <src path> <src path> ...]
+[2022-06-02 09:29:25,570] {bash.py:173} INFO - 	[-copyFromLocal [-f] [-p] [-l] [-d] [-t <thread count>] <localsrc> ... <dst>]
+[2022-06-02 09:29:25,571] {bash.py:173} INFO - 	[-copyToLocal [-f] [-p] [-ignoreCrc] [-crc] <src> ... <localdst>]
+[2022-06-02 09:29:25,571] {bash.py:173} INFO - 	[-count [-q] [-h] [-v] [-t [<storage type>]] [-u] [-x] [-e] [-s] <path> ...]
+[2022-06-02 09:29:25,571] {bash.py:173} INFO - 	[-cp [-f] [-p | -p[topax]] [-d] <src> ... <dst>]
+[2022-06-02 09:29:25,571] {bash.py:173} INFO - 	[-createSnapshot <snapshotDir> [<snapshotName>]]
+[2022-06-02 09:29:25,571] {bash.py:173} INFO - 	[-deleteSnapshot <snapshotDir> <snapshotName>]
+[2022-06-02 09:29:25,571] {bash.py:173} INFO - 	[-df [-h] [<path> ...]]
+[2022-06-02 09:29:25,571] {bash.py:173} INFO - 	[-du [-s] [-h] [-v] [-x] <path> ...]
+[2022-06-02 09:29:25,571] {bash.py:173} INFO - 	[-expunge [-immediate] [-fs <path>]]
+[2022-06-02 09:29:25,575] {bash.py:173} INFO - 	[-find <path> ... <expression> ...]
+[2022-06-02 09:29:25,575] {bash.py:173} INFO - 	[-get [-f] [-p] [-ignoreCrc] [-crc] <src> ... <localdst>]
+[2022-06-02 09:29:25,575] {bash.py:173} INFO - 	[-getfacl [-R] <path>]
+[2022-06-02 09:29:25,578] {bash.py:173} INFO - 	[-getfattr [-R] {-n name | -d} [-e en] <path>]
+[2022-06-02 09:29:25,578] {bash.py:173} INFO - 	[-getmerge [-nl] [-skip-empty-file] <src> <localdst>]
+[2022-06-02 09:29:25,578] {bash.py:173} INFO - 	[-head <file>]
+[2022-06-02 09:29:25,578] {bash.py:173} INFO - 	[-help [cmd ...]]
+[2022-06-02 09:29:25,628] {bash.py:173} INFO - 	[-ls [-C] [-d] [-h] [-q] [-R] [-t] [-S] [-r] [-u] [-e] [<path> ...]]
+[2022-06-02 09:29:25,628] {bash.py:173} INFO - 	[-mkdir [-p] <path> ...]
+[2022-06-02 09:29:25,628] {bash.py:173} INFO - 	[-moveFromLocal [-f] [-p] [-l] [-d] <localsrc> ... <dst>]
+[2022-06-02 09:29:25,628] {bash.py:173} INFO - 	[-moveToLocal <src> <localdst>]
+[2022-06-02 09:29:25,628] {bash.py:173} INFO - 	[-mv <src> ... <dst>]
+[2022-06-02 09:29:25,628] {bash.py:173} INFO - 	[-put [-f] [-p] [-l] [-d] [-t <thread count>] <localsrc> ... <dst>]
+[2022-06-02 09:29:25,628] {bash.py:173} INFO - 	[-renameSnapshot <snapshotDir> <oldName> <newName>]
+[2022-06-02 09:29:25,632] {bash.py:173} INFO - 	[-rm [-f] [-r|-R] [-skipTrash] [-safely] <src> ...]
+[2022-06-02 09:29:25,632] {bash.py:173} INFO - 	[-rmdir [--ignore-fail-on-non-empty] <dir> ...]
+[2022-06-02 09:29:25,632] {bash.py:173} INFO - 	[-setfacl [-R] [{-b|-k} {-m|-x <acl_spec>} <path>]|[--set <acl_spec> <path>]]
+[2022-06-02 09:29:25,633] {bash.py:173} INFO - 	[-setfattr {-n name [-v value] | -x name} <path>]
+[2022-06-02 09:29:25,633] {bash.py:173} INFO - 	[-setrep [-R] [-w] <rep> <path> ...]
+[2022-06-02 09:29:25,633] {bash.py:173} INFO - 	[-stat [format] <path> ...]
+[2022-06-02 09:29:25,633] {bash.py:173} INFO - 	[-tail [-f] [-s <sleep interval>] <file>]
+[2022-06-02 09:29:25,633] {bash.py:173} INFO - 	[-test -[defswrz] <path>]
+[2022-06-02 09:29:25,633] {bash.py:173} INFO - 	[-text [-ignoreCrc] <src> ...]
+[2022-06-02 09:29:25,633] {bash.py:173} INFO - 	[-touch [-a] [-m] [-t TIMESTAMP (yyyyMMdd:HHmmss) ] [-c] <path> ...]
+[2022-06-02 09:29:25,633] {bash.py:173} INFO - 	[-touchz <path> ...]
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - 	[-truncate [-w] <length> <path> ...]
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - 	[-usage [cmd ...]]
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - 
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - Generic options supported are:
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - -conf <configuration file>        specify an application configuration file
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - -D <property=value>               define a value for a given property
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - -fs <file:///|hdfs://namenode:port> specify default filesystem URL to use, overrides 'fs.defaultFS' property from configurations.
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - -jt <local|resourcemanager:port>  specify a ResourceManager
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - -files <file1,...>                specify a comma-separated list of files to be copied to the map reduce cluster
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - -libjars <jar1,...>               specify a comma-separated list of jar files to be included in the classpath
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - -archives <archive1,...>          specify a comma-separated list of archives to be unarchived on the compute machines
+[2022-06-02 09:29:25,634] {bash.py:173} INFO - 
+[2022-06-02 09:29:25,635] {bash.py:173} INFO - The general command line syntax is:
+[2022-06-02 09:29:25,635] {bash.py:173} INFO - command [genericOptions] [commandOptions]
+[2022-06-02 09:29:25,635] {bash.py:173} INFO - 
+[2022-06-02 09:29:25,635] {bash.py:173} INFO - Usage: hadoop fs [generic options] -put [-f] [-p] [-l] [-d] [-t <thread count>] <localsrc> ... <dst>
+[2022-06-02 09:29:25,992] {bash.py:177} INFO - Command exited with return code 255
+[2022-06-02 09:29:26,030] {taskinstance.py:1396} ERROR - Bash command failed. The command returned a non-zero exit code.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1086, in _run_raw_task
+    self._prepare_and_execute_task_with_callbacks(context, task)
+  File "/usr/local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1260, in _prepare_and_execute_task_with_callbacks
+    result = self._execute_task(context, task_copy)
+  File "/usr/local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1300, in _execute_task
+    result = task_copy.execute(context=context)
+  File "/usr/local/lib/python3.6/site-packages/airflow/operators/bash.py", line 180, in execute
+    raise AirflowException('Bash command failed. The command returned a non-zero exit code.')
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code.
+[2022-06-02 09:29:26,032] {taskinstance.py:1440} INFO - Marking task as FAILED. dag_id=YFinance_Crawler_DAG, task_id=CopyFromLocal, execution_date=20220602T092911, start_date=20220602T092923, end_date=20220602T092926
+[2022-06-02 09:29:26,091] {local_task_job.py:118} INFO - Task exited with return code 1

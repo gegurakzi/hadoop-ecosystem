@@ -1,8 +1,3 @@
-import os
-import sys
-sys.path.append(os.path.dirname('/opt/airflow/current/dags/pyscripts/yfinance'))
-#os.environ['PATH'] += os.pathsep + '/opt/airflow/current/dags/pyscripts'
-
 from datetime import datetime, timedelta
 from airflow.utils.dates import days_ago
 from textwrap import dedent
@@ -22,14 +17,36 @@ dag = DAG(
     schedule_interval='@once'
 )
 
-t1 = PythonOperator(
-    task_id='AAPL2files',
-	provide_context=True,
-    python_callable=ticker_tofiles,
-	op_kwargs={'ticker': 'AAPL',
-		      'outdir': '/opt/flume/current/source1_workdir/'},
+outdir = '/opt/flume/current/output'
+hdfsdir = '/user/hadoop/flume/ticker_csv'
+
+ticker_list = ['AAPL', 'MSFT']
+
+t1 = []
+for ticker in ticker_list:
+    t1.append(PythonOperator(
+        task_id=ticker+'2files',
+	    provide_context=True,
+        python_callable=ticker_tofiles,
+	    op_kwargs={'ticker': ticker,
+		       'outdir': outdir},
+        queue='queue-slave03',
+        dag=dag
+    ))
+
+
+t2 = BashOperator(
+    task_id='CopyFromLocal',
+    bash_command="hdfs dfs -put -t 4 "+outdir+" "+hdfsdir,
     queue='queue-slave03',
     dag=dag
 )
 
-t1
+t3 = BashOperator(
+    task_id='ClearOutDIr',
+    bash_command='rm -f '+outdir+'/*', 
+    queue='queue-slave03',
+    dag=dag
+)
+
+t1 >> t2 >> t3
