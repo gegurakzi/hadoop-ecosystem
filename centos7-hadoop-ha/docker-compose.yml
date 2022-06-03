@@ -10,8 +10,11 @@ services:
     hostname: master01
     volumes:
      - type: bind
-       source: /home/malachai/hadoop-ecosystem/keys
+       source: /home/malachai/hadoop-ecosystem/root-ssh
        target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/etc-ssh
+       target: /etc/ssh
      - type: bind
        source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/dags
        target: /opt/airflow/current/dags
@@ -25,6 +28,7 @@ services:
       - "9870:9870"
       - "8088:8088"
       - "8042:8042"
+      - "8793:8793"
       - "50070:50070"
       - "19888:19888"
       - "18080:18080"
@@ -48,8 +52,11 @@ services:
     hostname: master02
     volumes:
      - type: bind
-       source: /home/malachai/hadoop-ecosystem/keys
+       source: /home/malachai/hadoop-ecosystem/root-ssh
        target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/etc-ssh
+       target: /etc/ssh
      - type: bind
        source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/dags
        target: /opt/airflow/current/dags
@@ -62,6 +69,7 @@ services:
     ports:
       - "9871:9870"
       - "8089:8088"
+      - "8794:8793"
       - "8043:8042"
       - "50071:50070"
       - "19889:19888"
@@ -86,8 +94,11 @@ services:
     hostname: slave01
     volumes:
      - type: bind
-       source: /home/malachai/hadoop-ecosystem/keys
+       source: /home/malachai/hadoop-ecosystem/root-ssh
        target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/etc-ssh
+       target: /etc/ssh
      - type: bind
        source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/dags
        target: /opt/airflow/current/dags
@@ -102,6 +113,7 @@ services:
       - "5557:5555"
       - "4369:4369"
       - "5671:5671"
+      - "8795:8793"
       - "5672:5672"
       - "15672:15672"
       - "25672:25672"
@@ -124,8 +136,11 @@ services:
     hostname: slave02
     volumes:
      - type: bind
-       source: /home/malachai/hadoop-ecosystem/keys
+       source: /home/malachai/hadoop-ecosystem/root-ssh
        target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/etc-ssh
+       target: /etc/ssh
      - type: bind
        source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/dags
        target: /opt/airflow/current/dags
@@ -135,6 +150,8 @@ services:
     networks:
       cluster-net:
         ipv4_address: 172.16.238.5
+    ports:
+      - "8796:8793"
     extra_hosts:
       - "master01:172.16.238.2"
       - "master02:172.16.238.3"
@@ -150,8 +167,11 @@ services:
     hostname: slave03
     volumes:
      - type: bind
-       source: /home/malachai/hadoop-ecosystem/keys
+       source: /home/malachai/hadoop-ecosystem/root-ssh
        target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/etc-ssh
+       target: /etc/ssh
      - type: bind
        source: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/airflow/dags
        target: /opt/airflow/current/dags
@@ -161,6 +181,8 @@ services:
     networks:
       cluster-net:
         ipv4_address: 172.16.238.6
+    ports:
+      - "8797:8793"
     extra_hosts:
       - "master01:172.16.238.2"
       - "master02:172.16.238.3"
