@@ -2,12 +2,18 @@ version: "3.7"
 services:
   master01:
     build:
-      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/spark/myid
+      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/myid
       args:
+        - IMAGE=centos7/hadoop/spark:ha
         - MYID=1
     privileged: true
     container_name: master01
     hostname: master01
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 1536M
     volumes:
      - type: bind
        source: /home/malachai/hadoop-ecosystem/root-ssh
@@ -29,6 +35,7 @@ services:
       - "8088:8088"
       - "8042:8042"
       - "8793:8793"
+      - "9092:9092"
       - "50070:50070"
       - "19888:19888"
       - "18080:18080"
@@ -44,12 +51,18 @@ services:
 
   master02:
     build:
-      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/spark/myid
+      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/myid
       args:
+        - IMAGE=centos7/hadoop/spark:ha
         - MYID=2
     privileged: true
     container_name: master02
     hostname: master02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 1536M
     volumes:
      - type: bind
        source: /home/malachai/hadoop-ecosystem/root-ssh
@@ -71,6 +84,7 @@ services:
       - "8089:8088"
       - "8794:8793"
       - "8043:8042"
+      - "9093:9092"
       - "50071:50070"
       - "19889:19888"
       - "18081:18081"
@@ -86,12 +100,18 @@ services:
 
   slave01:
     build:
-      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/rabbitmq/myid
+      context: /home/malachai/hadoop-ecosystem/centos7-hadoop-ha/myid
       args:
+        - IMAGE=centos7/hadoop/rabbitmq:ha
         - MYID=3
     privileged: true
     container_name: slave01
     hostname: slave01
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 1536M
     volumes:
      - type: bind
        source: /home/malachai/hadoop-ecosystem/root-ssh
@@ -113,8 +133,10 @@ services:
       - "5557:5555"
       - "4369:4369"
       - "5671:5671"
+      - "8044:8042"
       - "8795:8793"
       - "5672:5672"
+      - "9094:9092"
       - "15672:15672"
       - "25672:25672"
       - "61613:61613"
@@ -134,6 +156,11 @@ services:
     privileged: true
     container_name: slave02
     hostname: slave02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 1536M
     volumes:
      - type: bind
        source: /home/malachai/hadoop-ecosystem/root-ssh
@@ -151,6 +178,7 @@ services:
       cluster-net:
         ipv4_address: 172.16.238.5
     ports:
+      - "8045:8042"
       - "8796:8793"
     extra_hosts:
       - "master01:172.16.238.2"
@@ -165,6 +193,11 @@ services:
     privileged: true
     container_name: slave03
     hostname: slave03
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 1536M
     volumes:
      - type: bind
        source: /home/malachai/hadoop-ecosystem/root-ssh
@@ -182,6 +215,7 @@ services:
       cluster-net:
         ipv4_address: 172.16.238.6
     ports:
+      - "8046:8042"
       - "8797:8793"
     extra_hosts:
       - "master01:172.16.238.2"
