@@ -31,6 +31,7 @@ $'alias zoo-start="/opt/zookeeper/current/bin/zkServer.sh start" \n\
   zoo-start' >> $HOME/.bashrc
 
 ENV AIRFLOW_HOME=/opt/airflow/current
+ENV AIRFLOW_CONFIG=/opt/airflow/current/conf/airflow.cfg
 
 RUN AIRFLOW_VERSION=2.0.0 && \
     PYTHON_VERSION=3.6 && \
@@ -38,6 +39,8 @@ RUN AIRFLOW_VERSION=2.0.0 && \
     mkdir /opt/airflow/airflow-${AIRFLOW_VERSION} && \
     mkdir /opt/airflow/airflow-${AIRFLOW_VERSION}/dags && \
     mkdir /opt/airflow/airflow-${AIRFLOW_VERSION}/logs && \
+    mkdir /opt/airflow/airflow-${AIRFLOW_VERSION}/output && \
+    mkdir /opt/airflow/airflow-${AIRFLOW_VERSION}/conf && \
     ln -s /opt/airflow/airflow-${AIRFLOW_VERSION} /opt/airflow/current && \
     cd /opt/airflow && \
     pip3 install --upgrade pip && \
@@ -48,7 +51,7 @@ RUN AIRFLOW_VERSION=2.0.0 && \
     pip install pytz pyOpenSSL ndg-httpsclient mysqlclient celery flower apache-airflow==${AIRFLOW_VERSION} \
                         --constraint https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt
 
-COPY airflow.cfg $AIRFLOW_HOME
+COPY airflow.cfg $AIRFLOW_HOME/conf
 
 ENTRYPOINT ["/bin/bash"]
  

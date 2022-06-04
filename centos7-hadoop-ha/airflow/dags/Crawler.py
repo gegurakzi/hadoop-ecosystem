@@ -17,8 +17,8 @@ dag = DAG(
     schedule_interval='@once'
 )
 
-outdir = '/opt/flume/current/output'
-hdfsdir = '/user/hadoop/flume/ticker_csv'
+outdir = '/opt/airflow/current/output'
+hdfsdir = '/user/hadoop/airflow'
 
 ticker_list = ['AAPL', 'MSFT']
 

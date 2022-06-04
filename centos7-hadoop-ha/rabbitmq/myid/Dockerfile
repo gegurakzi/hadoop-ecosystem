@@ -1,4 +1,6 @@
-FROM centos7/hadoop/rabbitmq:ha
+ARG IMAGE
+FROM $IMAGE:ha
+#FROM centos7/hadoop/rabbitmq:ha
 
 MAINTAINER Malachai <prussian1933@naver.com>
 

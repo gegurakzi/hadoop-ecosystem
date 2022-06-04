@@ -29,9 +29,9 @@ ENV PATH=$PATH:$HADOOP_HOME/bin
 ENV PATH=$PATH:$HADOOP_HOME/sbin
 ENV HADOOP_PID_DIR=/opt/hadoop/current/pids
 
-RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -t rsa -N "" && \
-    ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -t ecdsa -N "" && \
-    ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -t ed25519 -N ""
+#RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -t rsa -N "" && \
+#    ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -t ecdsa -N "" && \
+#    ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -t ed25519 -N ""
 
 RUN cd $HADOOP_HOME/etc/hadoop && \
     echo \
@@ -42,10 +42,15 @@ $'export HADOOP_PID_DIR=/opt/hadoop/current/pids \n\
   export HDFS_SECONDARYNAMENODE_USER=\"root\" \n\
   export YARN_RESOURCEMANAGER_USER=\"root\" \n\
   export YARN_NODEMANAGER_USER=\"root\" ' >> hadoop-env.sh && \
+#    ssh-keygen -q -t rsa -N "" -f ~/.ssh/id_rsa <<<y && \
+#    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
     echo \
-$'ssh-keygen -q -t rsa -N "" -f ~/.ssh/id_rsa <<<y \n\
-  cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys \n\
-  /usr/sbin/sshd' >> $HOME/.bashrc
+$' \n /usr/sbin/sshd' >> /root/.bashrc
+
+#    echo \
+#$'ssh-keygen -q -t rsa -N "" -f ~/.ssh/id_rsa <<<y \n\
+#  ssh-keygen -q -t rsa -N "" -f ~/.ssh/id_rsa <<<y \n\
+#  /usr/sbin/sshd' >> $HOME/.bashrc
 
 COPY core-site.xml .
 COPY hdfs-site.xml .

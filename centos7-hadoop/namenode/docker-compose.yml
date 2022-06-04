@@ -1,0 +1,124 @@
+version: "3.7"
+services:
+  master01:
+    image: centos7/hadoop:nn
+    privileged: True
+    container_name: master01
+    hostname: master01
+    volumes:
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/root-ssh
+       target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/etc-ssh
+       target: /etc/ssh
+    networks:
+      cluster-net:
+        ipv4_address: 172.16.238.2
+    extra_hosts:
+      - "master02:172.16.238.3"
+      - "slave01:172.16.238.4"
+      - "slave02:172.16.238.5"
+      - "slave03:172.16.238.6"
+    stdin_open: true
+    tty: true
+
+  master02:
+    image: centos7/hadoop:nn
+    privileged: True
+    container_name: master02
+    hostname: master02
+    volumes:
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/root-ssh
+       target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/etc-ssh
+       target: /etc/ssh
+    networks:
+      cluster-net:
+        ipv4_address: 172.16.238.3
+    extra_hosts:
+      - "master01:172.16.238.2"
+      - "slave01:172.16.238.4"
+      - "slave02:172.16.238.5"
+      - "slave03:172.16.238.6"
+    stdin_open: true
+    tty: true
+
+  slave01:
+    image: centos7/hadoop:nn
+    privileged: True
+    container_name: slave01
+    hostname: slave01
+    volumes:
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/root-ssh
+       target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/etc-ssh
+       target: /etc/ssh
+    networks:
+      cluster-net:
+        ipv4_address: 172.16.238.4
+    extra_hosts:
+      - "master01:172.16.238.2"
+      - "master02:172.16.238.3"
+      - "slave02:172.16.238.5"
+      - "slave03:172.16.238.6"
+    stdin_open: true
+    tty: true
+
+  slave02:
+    image: centos7/hadoop:nn
+    privileged: True
+    container_name: slave02
+    hostname: slave02
+    volumes:
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/root-ssh
+       target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/etc-ssh
+       target: /etc/ssh
+    networks:
+      cluster-net:
+        ipv4_address: 172.16.238.5
+    extra_hosts:
+      - "master01:172.16.238.2"
+      - "master02:172.16.238.3"
+      - "slave01:172.16.238.4"
+      - "slave03:172.16.238.6"
+    stdin_open: true
+    tty: true
+
+  slave03:
+    image: centos7/hadoop:nn
+    privileged: True
+    container_name: slave03
+    hostname: slave03
+    volumes:
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/root-ssh
+       target: /root/.ssh
+     - type: bind
+       source: /home/malachai/hadoop-ecosystem/etc-ssh
+       target: /etc/ssh
+    networks:
+      cluster-net:
+        ipv4_address: 172.16.238.6
+    extra_hosts:
+      - "master01:172.16.238.2"
+      - "master02:172.16.238.3"
+      - "slave01:172.16.238.4"
+      - "slave02:172.16.238.5"
+    stdin_open: true
+    tty: true
+
+networks:
+  cluster-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.238.0/24"
+
